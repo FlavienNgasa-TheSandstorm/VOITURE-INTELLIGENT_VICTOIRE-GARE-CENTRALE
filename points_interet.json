@@ -1,0 +1,107 @@
+{
+  "Place de la Victoire": {
+    "nom": "Place de la Victoire",
+    "latitude": -4.33787,
+    "longitude": 15.30553,
+    "type_point": "depart",
+    "commune": "Kalamu"
+  },
+  "Gare Centrale": {
+    "nom": "Gare Centrale",
+    "latitude": -4.31600,
+    "longitude": 15.31300,
+    "type_point": "arrivee",
+    "commune": "Gombe"
+  },
+  "Marché Central": {
+    "nom": "Marché Central",
+    "latitude": -4.32500,
+    "longitude": 15.31000,
+    "type_point": "intermediaire",
+    "commune": "Gombe"
+  },
+  "Stade des Martyrs": {
+    "nom": "Stade des Martyrs",
+    "latitude": -4.33200,
+    "longitude": 15.30800,
+    "type_point": "intermediaire",
+    "commune": "Lingwala"
+  },
+  "Université de Kinshasa": {
+    "nom": "Université de Kinshasa",
+    "latitude": -4.41500,
+    "longitude": 15.30300,
+    "type_point": "intermediaire",
+    "commune": "Lemba"
+  },
+  "Hôpital Général de Kinshasa": {
+    "nom": "Hôpital Général de Kinshasa",
+    "latitude": -4.32200,
+    "longitude": 15.31100,
+    "type_point": "intermediaire",
+    "commune": "Gombe"
+  },
+  "Palais du Peuple": {
+    "nom": "Palais du Peuple",
+    "latitude": -4.31800,
+    "longitude": 15.31200,
+    "type_point": "intermediaire",
+    "commune": "Gombe"
+  },
+  "Tour de l'Échangeur": {
+    "nom": "Tour de l'Échangeur",
+    "latitude": -4.33500,
+    "longitude": 15.30600,
+    "type_point": "intermediaire",
+    "commune": "Kalamu"
+  },
+  "Avenue de la Justice": {
+    "nom": "Avenue de la Justice",
+    "latitude": -4.32000,
+    "longitude": 15.31100,
+    "type_point": "intermediaire",
+    "commune": "Gombe"
+  },
+  "Boulevard du 30 Juin": {
+    "nom": "Boulevard du 30 Juin",
+    "latitude": -4.32800,
+    "longitude": 15.30900,
+    "type_point": "intermediaire",
+    "commune": "Gombe"
+  },
+  "Avenue des Aviateurs": {
+    "nom": "Avenue des Aviateurs",
+    "latitude": -4.32200,
+    "longitude": 15.30800,
+    "type_point": "intermediaire",
+    "commune": "Gombe"
+  },
+  "Place du Marché": {
+    "nom": "Place du Marché",
+    "latitude": -4.32600,
+    "longitude": 15.31000,
+    "type_point": "intermediaire",
+    "commune": "Gombe"
+  },
+  "Carrefour Forescom": {
+    "nom": "Carrefour Forescom",
+    "latitude": -4.33000,
+    "longitude": 15.30700,
+    "type_point": "intermediaire",
+    "commune": "Gombe"
+  },
+  "Avenue de la Libération": {
+    "nom": "Avenue de la Libération",
+    "latitude": -4.31900,
+    "longitude": 15.31200,
+    "type_point": "intermediaire",
+    "commune": "Gombe"
+  },
+  "Immeuble Sozacom": {
+    "nom": "Immeuble Sozacom",
+    "latitude": -4.31700,
+    "longitude": 15.31300,
+    "type_point": "intermediaire",
+    "commune": "Gombe"
+  }
+}

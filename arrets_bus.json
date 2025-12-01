@@ -1,0 +1,38 @@
+{
+  "Arrêt Victoire": {
+    "nom": "Arrêt Victoire",
+    "latitude": -4.4420,
+    "longitude": 15.2665,
+    "type_point": "arret_bus"
+  },
+  "Arrêt Gare": {
+    "nom": "Arrêt Gare",
+    "latitude": -4.4405,
+    "longitude": 15.2695,
+    "type_point": "arret_bus"
+  },
+  "Arrêt Marché": {
+    "nom": "Arrêt Marché",
+    "latitude": -4.4435,
+    "longitude": 15.2645,
+    "type_point": "arret_bus"
+  },
+  "Arrêt Stade": {
+    "nom": "Arrêt Stade",
+    "latitude": -4.4475,
+    "longitude": 15.2585,
+    "type_point": "arret_bus"
+  },
+  "Arrêt Université": {
+    "nom": "Arrêt Université",
+    "latitude": -4.4210,
+    "longitude": 15.3040,
+    "type_point": "arret_bus"
+  },
+  "Arrêt Hôpital": {
+    "nom": "Arrêt Hôpital",
+    "latitude": -4.4355,
+    "longitude": 15.2755,
+    "type_point": "arret_bus"
+  }
+}

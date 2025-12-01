@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartes - Agent Véhicule</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .cartes-hero {
+            background: var(--gradient-secondary);
+            color: white;
+            padding: 100px 0 60px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .cartes-grid {
+            padding: 60px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .carte-card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .carte-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .carte-preview {
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carte-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path d="M20,20 L80,20 L80,80 L20,80 Z" fill="white"/><circle cx="30" cy="30" r="5" fill="white"/><circle cx="70" cy="70" r="5" fill="white"/></svg>');
+            background-size: 200px;
+        }
+
+        .carte-point {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .point-start {
+            background: var(--success);
+            top: 30%;
+            left: 25%;
+            box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.3);
+        }
+
+        .point-end {
+            background: var(--danger);
+            top: 70%;
+            left: 75%;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.3);
+        }
+
+        .route-line {
+            position: absolute;
+            top: 30%;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.7);
+            transform: rotate(25deg);
+            transform-origin: left center;
+        }
+
+        .carte-info {
+            padding: 25px;
+        }
+
+        .carte-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .carte-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .carte-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .carte-stat {
+            text-align: center;
+            padding: 10px;
+            background: var(--light);
+            border-radius: 8px;
+        }
+
+        .stat-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .carte-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-sm {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            flex: 1;
+            text-align: center;
+        }
+
+        .carte-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .cartes-actions {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--light);
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .cartes-grid {
+                grid-template-columns: 1fr;
+                padding: 40px 15px;
+            }
+            
+            .carte-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-car"></i>
+                <span>Agent Véhicule</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="dashboard.html" class="nav-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="simulation.html" class="nav-link"><i class="fas fa-play"></i> Simulation</a></li>
+                <li><a href="cartes.html" class="nav-link active"><i class="fas fa-map"></i> Cartes</a></li>
+                <li><a href="rapports.html" class="nav-link"><i class="fas fa-chart-bar"></i> Rapports</a></li>
+                <li><a href="apropos.html" class="nav-link"><i class="fas fa-info-circle"></i> À Propos</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="cartes-hero">
+        <div class="container">
+            <h1>Cartes Interactives</h1>
+            <p>Visualisez les itinéraires générés par l'agent intelligent</p>
+        </div>
+    </section>
+
+    <div class="cartes-actions">
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">Toutes les cartes</button>
+            <button class="filter-btn" data-filter="multi-routes">Multi-Routes</button>
+            <button class="filter-btn" data-filter="itineraire">Itinéraire Unique</button>
+            <button class="filter-btn" data-filter="recente">Plus récentes</button>
+        </div>
+        <a href="simulation.html" class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+            Générer une Nouvelle Carte
+        </a>
+    </div>
+
+    <div class="cartes-grid">
+        <!-- Carte Multi-Routes -->
+        <div class="carte-card" data-type="multi-routes recente">
+            <div class="carte-preview">
+                <span class="carte-badge">Multi-Routes</span>
+                <div class="carte-point point-start"></div>
+                <div class="carte-point point-end"></div>
+                <div class="route-line"></div>
+                <!-- Points intermédiaires simulés -->
+                <div class="carte-point" style="background: #3498db; top: 45%; left: 40%;"></div>
+                <div class="carte-point" style="background: #9b59b6; top: 60%; left: 55%;"></div>
+                <div class="carte-point" style="background: #e74c3c; top: 50%; left: 70%;"></div>
+            </div>
+            <div class="carte-info">
+                <h3 class="carte-title">Analyse Multi-Routes - Stratégie Rapide</h3>
+                <p class="carte-description">
+                    Comparaison complète des 5 routes alternatives avec analyse détaillée 
+                    de chaque point intermédiaire.
+                </p>
+                <div class="carte-stats">
+                    <div class="carte-stat">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">Routes</div>
+                    </div>
+                    <div class="carte-stat">
+                        <div class="stat-value">12.3 km</div>
+                        <div class="stat-label">Distance</div>
+                    </div>
+                    <div class="carte-stat">
+                        <div class="stat-value">29 min</div>
+                        <div class="stat-label">Durée</div>
+                    </div>
+                </div>
+                <div class="carte-actions">
+                    <a href="carte_multi_routes_kinshasa.html" class="btn btn-primary btn-sm" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        Ouvrir
+                    </a>
+                    <a href="#" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-download"></i>
+                        Télécharger
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carte Itinéraire Unique -->
+        <div class="carte-card" data-type="itineraire recente">
+            <div class="carte-preview" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">
+                <span class="carte-badge">Itinéraire Optimal</span>
+                <div class="carte-point point-start"></div>
+                <div class="carte-point point-end"></div>
+                <div class="route-line" style="background: rgba(255,255,255,0.8);"></div>
+            </div>
+            <div class="carte-info">
+                <h3 class="carte-title">Itinéraire Choisi - Boulevard du 30 Juin</h3>
+                <p class="carte-description">
+                    Route principale optimisée pour le temps de trajet avec points 
+                    d'intérêt détaillés.
+                </p>
+                <div class="carte-stats">
+                    <div class="carte-stat">
+                        <div class="stat-value">8</div>
+                        <div class="stat-label">Points</div>
+                    </div>
+                    <div class="carte-stat">
+                        <div class="stat-value">11.8 km</div>
+                        <div class="stat-label">Distance</div>
+                    </div>
+                    <div class="carte-stat">
+                        <div class="stat-value">26 min</div>
+                        <div class="stat-label">Durée</div>
+                    </div>
+                </div>
+                <div class="carte-actions">
+                    <a href="carte_itineraire_kinshasa.html" class="btn btn-primary btn-sm" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        Ouvrir
+                    </a>
+                    <a href="#" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-download"></i>
+                        Télécharger
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carte Historique -->
+        <div class="carte-card" data-type="multi-routes">
+            <div class="carte-preview" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
+                <span class="carte-badge">Économique</span>
+                <div class="carte-point point-start"></div>
+                <div class="carte-point point-end"></div>
+                <div class="route-line" style="background: rgba(255,255,255,0.7); transform: rotate(15deg);"></div>
+            </div>
+            <div class="carte-info">
+                <h3 class="carte-title">Route Économique - Centre Ville</h3>
+                <p class="carte-description">
+                    Itinéraire optimisé pour réduire les coûts tout en maintenant 
+                    un temps de trajet raisonnable.
+                </p>
+                <div class="carte-stats">
+                    <div class="carte-stat">
+                        <div class="stat-value">1.85 USD</div>
+                        <div class="stat-label">Coût</div>
+                    </div>
+                    <div class="carte-stat">
+                        <div class="stat-value">13.1 km</div>
+                        <div class="stat-label">Distance</div>
+                    </div>
+                    <div class="carte-stat">
+                        <div class="stat-value">32 min</div>
+                        <div class="stat-label">Durée</div>
+                    </div>
+                </div>
+                <div class="carte-actions">
+                    <a href="#" class="btn btn-primary btn-sm" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        Ouvrir
+                    </a>
+                    <a href="#" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-download"></i>
+                        Télécharger
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Plus de cartes... -->
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Agent Véhicule Intelligent</h3>
+                    <p>Visualisation avancée des itinéraires à Kinshasa</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="simulation.html">Simulation</a></li>
+                        <li><a href="rapports.html">Rapports</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Agent Véhicule Intelligent - Galerie de cartes interactives</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filtrage des cartes
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Active le bouton
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                const cartes = document.querySelectorAll('.carte-card');
+                
+                cartes.forEach(carte => {
+                    if (filter === 'all') {
+                        carte.style.display = 'block';
+                    } else {
+                        const types = carte.dataset.type.split(' ');
+                        if (types.includes(filter)) {
+                            carte.style.display = 'block';
+                        } else {
+                            carte.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>

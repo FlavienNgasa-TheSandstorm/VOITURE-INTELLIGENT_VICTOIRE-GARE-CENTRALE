@@ -1,0 +1,26 @@
+{
+  "Rond, Kinshasa, République Démocratique du Congo": {
+    "nom": "Rond",
+    "latitude": -4.3900382,
+    "longitude": 15.315266,
+    "type_point": "geocode"
+  },
+  "Gare Centrale, Kinshasa, République Démocratique du Congo": {
+    "nom": "Gare Centrale",
+    "latitude": -4.3453275,
+    "longitude": 15.2304535,
+    "type_point": "geocode"
+  },
+  "Raw, Kinshasa, République Démocratique du Congo": {
+    "nom": "Raw",
+    "latitude": -4.3040759,
+    "longitude": 15.2919091,
+    "type_point": "geocode"
+  },
+  "Place, Kinshasa, République Démocratique du Congo": {
+    "nom": "Place",
+    "latitude": -4.3743386,
+    "longitude": 15.345319,
+    "type_point": "geocode"
+  }
+}

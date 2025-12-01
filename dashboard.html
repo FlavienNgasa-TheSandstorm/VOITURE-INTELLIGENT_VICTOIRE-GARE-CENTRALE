@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Agent Véhicule</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-car"></i>
+                <span>Agent Véhicule</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="dashboard.html" class="nav-link active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="simulation.html" class="nav-link"><i class="fas fa-play"></i> Simulation</a></li>
+                <li><a href="cartes.html" class="nav-link"><i class="fas fa-map"></i> Cartes</a></li>
+                <li><a href="rapports.html" class="nav-link"><i class="fas fa-chart-bar"></i> Rapports</a></li>
+                <li><a href="apropos.html" class="nav-link"><i class="fas fa-info-circle"></i> À Propos</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Tableau de Bord</h1>
+                <p>Vue d'ensemble des simulations et analyses</p>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="stats-overview">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">Routes Analysées</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value">12.5</div>
+                        <div class="stat-label">km Distance Moyenne</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value">2.15</div>
+                        <div class="stat-label">USD Coût Moyen</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value">87%</div>
+                        <div class="stat-label">Efficacité</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h2>Actions Rapides</h2>
+                <div class="actions-grid">
+                    <a href="simulation.html" class="action-card">
+                        <i class="fas fa-play-circle"></i>
+                        <h3>Nouvelle Simulation</h3>
+                        <p>Lancer une nouvelle analyse de routes</p>
+                    </a>
+                    <a href="cartes.html" class="action-card">
+                        <i class="fas fa-map"></i>
+                        <h3>Voir les Cartes</h3>
+                        <p>Explorer les visualisations générées</p>
+                    </a>
+                    <a href="rapports.html" class="action-card">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>Rapports</h3>
+                        <p>Consulter les analyses détaillées</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Recent Simulations -->
+            <div class="recent-simulations">
+                <h2>Simulations Récentes</h2>
+                <div class="simulations-grid">
+                    <div class="simulation-card">
+                        <div class="simulation-header">
+                            <h3>Simulation #001</h3>
+                            <span class="status completed">Terminée</span>
+                        </div>
+                        <div class="simulation-details">
+                            <p><strong>Stratégie:</strong> Rapide</p>
+                            <p><strong>Route choisie:</strong> Boulevard du 30 Juin</p>
+                            <p><strong>Distance:</strong> 12.3 km</p>
+                            <p><strong>Durée:</strong> 29 min</p>
+                        </div>
+                        <div class="simulation-actions">
+                            <a href="#" class="btn btn-sm">Voir Carte</a>
+                            <a href="#" class="btn btn-sm btn-secondary">Rapport</a>
+                        </div>
+                    </div>
+                    <!-- Ajouter plus de cartes de simulation -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Agent Véhicule Intelligent</h3>
+                    <p>Système de décision multi-routes pour Kinshasa</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="simulation.html">Simulation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Agent Véhicule Intelligent</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
